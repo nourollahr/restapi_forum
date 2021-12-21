@@ -14,10 +14,10 @@ class CreateRepliesTable extends Migration
 	public function up()
 	{
 		Schema::create('replies', function (Blueprint $table) {
-			$table->increments('id');
-			$table->integer('thread_id')->unsigned();
+			$table->id();
+			$table->unsignedBigInteger('thread_id');
 			$table->foreign('thread_id')->references('id')->on('threads');
-			$table->integer('user_id')->unsigned();
+			$table->unsignedBigInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->text('body');
 			$table->timestamps();

@@ -14,10 +14,10 @@ class CreateActivitiesTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->increments('id');
-			$table->unsignedInteger('user_id');
+            $table->id();
+			$table->unsignedBigInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->unsignedInteger('subject_id');
+			$table->unsignedBigInteger('subject_id');
 			$table->string('subject_type');
 			$table->string('type');
 

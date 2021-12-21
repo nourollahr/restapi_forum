@@ -14,10 +14,10 @@ class CreateThreadSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('thread_subscriptions', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->on('users')->references('id');
-            $table->unsignedInteger('thread_id');
+            $table->unsignedBigInteger('thread_id');
             $table->foreign('thread_id')->on('threads')->references('id')->onDelete('cascade');
             $table->timestamps();
 

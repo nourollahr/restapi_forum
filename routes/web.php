@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 use App\Http\Controllers\ThreadsController;
 use Illuminate\Support\Facades\Auth;
@@ -39,21 +41,11 @@ Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
 
-//Route::resource('threads', 'ThreadsController', [
-//	'names' => [
-//		'index' => 'threads',
-//	],
-//]);
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Auth::routes();
 

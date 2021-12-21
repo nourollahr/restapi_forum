@@ -14,10 +14,11 @@ class CreateThreadsTable extends Migration
     public function up()
     {
         Schema::create('threads', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+
+            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('channel_id')->unsigned();
+            $table->unsignedBigInteger('channel_id');
             $table->foreign('channel_id')->references('id')->on('channels');
             $table->string('title');
             $table->text('body');
