@@ -1,13 +1,25 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(\App\Models\Reply::class, function (Faker $faker) {
-	/** @var \App\Models\Thread $thread */
-	$thread = \App\Models\Thread::inRandomOrder()->first();
-	return [
-		'thread_id' => $thread->id,
-		'user_id'   => $thread->user_id,
-		'body'      => $faker->paragraph,
-	];
-});
+use App\Models\Thread;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ReplyFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $thread = Thread::inRandomOrder()->first();
+        return [
+            'thread_id' => $thread->id,
+            'user_id'   => $thread->user_id,
+            'body'      => $this->faker->paragraph,
+        ];
+    }
+}

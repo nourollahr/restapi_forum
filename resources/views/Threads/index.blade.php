@@ -27,7 +27,7 @@
                                         </form>
                                     @endcan
 
-                                    <strong>{{ $thread->replies->count() }} {{ str_plural('reply', $thread->replies->count()) }}</strong>
+                                    <strong>{{ $thread->replies->count() }} {{ Str::plural('reply', $thread->replies->count()) }}</strong>
                                 </div>
                                 <div class="body">{{ $thread->body }}</div>
 

@@ -6,6 +6,7 @@ use App\Models\ThreadSubscription;
 use App\Notifications\ThreadWasUpdated;
 use App\Traits\RecordsActivity;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use PhpParser\Builder;
 
@@ -27,7 +28,7 @@ use PhpParser\Builder;
  */
 class Thread extends Model
 {
-	use RecordsActivity;
+	use RecordsActivity,HasFactory;
 
 	protected $guarded = [];
 

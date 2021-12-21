@@ -1,12 +1,25 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(\App\Models\Thread::class, function (Faker $faker) {
-	return [
-		'user_id'    => \App\Models\User::inRandomOrder()->first()->id,
-		'channel_id' => \App\Models\Channel::inRandomOrder()->first()->id,
-		'title'      => $faker->word,
-		'body'       => $faker->paragraph,
-	];
-});
+use App\Models\Channel;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ThreadFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'user_id'    => User::inRandomOrder()->first()->id,
+            'channel_id' => Channel::inRandomOrder()->first()->id,
+            'title'      => $this->faker->word,
+            'body'       => $this->faker->paragraph,
+        ];
+    }
+}

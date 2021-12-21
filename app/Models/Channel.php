@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,12 +16,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Channel extends Model
 {
+    use HasFactory;
+
 	// Relations
 	public function Threads()
 	{
 		return $this->hasMany(Thread::class, 'channel_id');
 	}
-	
+
 	// Functions
 
 	public function getRouteKeyName()
