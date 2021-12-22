@@ -93,7 +93,7 @@
                         <p>
                             This thread was published {{ $thread->created_at->diffForHumans() }} by <a
                                     href="#"> {{ $thread->owner->name }}</a>, and currently
-                            has {{ $thread->replies_count }} {{ str_plural('comment', $thread->replies->count()) }}.
+                            has {{ $thread->replies_count }} {{ Str::plural('comment', $thread->replies->count()) }}.
                         </p>
 
                         @if(!$thread->isSubscribed)

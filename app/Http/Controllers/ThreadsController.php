@@ -61,7 +61,8 @@ class ThreadsController extends Controller
 	 */
 	public function create()
 	{
-		return view('Threads.create');
+        $channels = Channel::all();
+		return view('Threads.create', compact('channels'));
 	}
 
 	/**
@@ -90,7 +91,7 @@ class ThreadsController extends Controller
 	 */
 	public function show($channel, Thread $thread)
 	{
-		return view('threads.show')
+		return view('Threads.show')
 			->with([
 				'thread'  => $thread,
 				'replies' => $thread->replies()->paginate(10),
