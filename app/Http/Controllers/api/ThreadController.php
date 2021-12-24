@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Thread;
 use App\Models\User;
 use App\Http\Resources\api\ThreadIndexResource;
+use App\Http\Requests\api\Thread\CreateThreadRequest;
+use App\Http\Requests\api\Thread\ShowThreadRequest;
+use App\Http\Resources\api\Thread\ShowThreadResource;
+use App\Http\Resources\api\Thread\DestroyThreadRequest;
 
 class ThreadController extends Controller
 {
@@ -30,5 +34,43 @@ class ThreadController extends Controller
         }
         $threads = $threads->paginate(2);
         return ThreadIndexResource::collection($threads);
+    }
+
+    public function create(CreateThreadRequest $request)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        \Thread::create([
+            'user_id' => $user->id,
+            'channel_id' => $request->channel_id,
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+
+        return [
+            'status' => true,
+            'message' => trans('api.thread.create_success'),
+        ];
+    }
+
+    public function show(ShowThreadRequest $request)
+    {
+        $thread = Thread::find($request->thread_id);
+        return new ShowThreadResource($thread);
+    }
+
+    public function destroy(DestroyThreadRequest $request)
+    {
+        $thread = Thread::find($request->thread_id);
+
+        $this->authorize('update', $thread);
+
+        $thread->delete();
+
+        return [
+            'status' => true,
+            'message' => trans('api.thread.destroy_success'),
+        ];
     }
 }

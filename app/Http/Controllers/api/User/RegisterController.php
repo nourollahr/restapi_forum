@@ -19,7 +19,7 @@ class RegisterController extends Controller
 
         return [
             'status' => true,
-            'message' => 'ثبت نام موفقیت آمیز بود',
+            'message' => trans('api.user.register.success'),
             'token' => $user->createToken('create')->accessToken
         ];
     }

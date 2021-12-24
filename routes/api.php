@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\User\RegisterController;
 use App\Http\Controllers\api\User\LoginController;
 use App\Http\Controllers\api\ThreadController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,5 +24,17 @@ Route::group(['namespace' => 'api'], function () {
             Route::post('login', [LoginController::class, 'login']);
         });
     });
-    Route::get('threads', [ThreadController::class, 'index']);
+
+    Route::group(['prefix' => 'threads'], function(){
+        Route::get('/', [ThreadController::class, 'index']);
+        Route::post('/', [ThreadController::class, 'show']);
+    });
+});
+
+
+Route::group(['namespace' => 'api', 'middleware' => 'auth:api'], function () {
+   Route::group(['prefix' => 'threads'], function () {
+       Route::post('create', [ThreadController::class, 'create']);
+       Route::post('remove', [ThreadController::class, 'destroy']);
+   });
 });
