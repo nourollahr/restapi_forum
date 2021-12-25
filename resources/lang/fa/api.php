@@ -17,7 +17,8 @@ return [
     ],
     'reply' => [
         'destroy_success' => 'با موفقیت حذف شد',
-        'update_success' => 'با موفقیت به روزرسانی شد'
+        'update_success' => 'با موفقیت به روزرسانی شد',
+        'add_favorite' => 'با موفقیت ثبت شد'
     ]
 ];
 

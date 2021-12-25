@@ -11,7 +11,6 @@ use App\Http\Requests\api\Thread\CreateThreadRequest;
 use App\Http\Requests\api\Thread\ShowThreadRequest;
 use App\Http\Resources\api\Thread\ShowThreadResource;
 use App\Http\Resources\api\Thread\DestroyThreadRequest;
-use Thread;
 
 class ThreadController extends Controller
 {
