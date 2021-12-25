@@ -11,6 +11,7 @@ use App\Http\Requests\api\Thread\CreateThreadRequest;
 use App\Http\Requests\api\Thread\ShowThreadRequest;
 use App\Http\Resources\api\Thread\ShowThreadResource;
 use App\Http\Resources\api\Thread\DestroyThreadRequest;
+use Thread;
 
 class ThreadController extends Controller
 {
@@ -54,16 +55,13 @@ class ThreadController extends Controller
         ];
     }
 
-    public function show(ShowThreadRequest $request)
+    public function show(Thread $thread)
     {
-        $thread = Thread::find($request->thread_id);
         return new ShowThreadResource($thread);
     }
 
-    public function destroy(DestroyThreadRequest $request)
+    public function destroy(Thread $thread)
     {
-        $thread = Thread::find($request->thread_id);
-
         $this->authorize('update', $thread);
 
         $thread->delete();

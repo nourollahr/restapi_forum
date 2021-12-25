@@ -12,7 +12,12 @@ return [
     ],
     'thread' => [
         'create_success' => 'با موفقیت ایجاد شد',
-        'destroy_success' => 'با موفقیت حذف شد'
+        'destroy_success' => 'با موفقیت حذف شد',
+        'add_reply' => 'پاسخ شما با موفقیت اضافه شد'
+    ],
+    'reply' => [
+        'destroy_success' => 'با موفقیت حذف شد',
+        'update_success' => 'با موفقیت به روزرسانی شد'
     ]
 ];
 

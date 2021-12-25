@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\api\Thread;
 
+use App\Http\Resources\api\Reply\ShowReplyResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ShowThreadResource extends JsonResource
@@ -18,6 +19,7 @@ class ShowThreadResource extends JsonResource
             'channel_name' => $this->channel->name,
             'title' => $this->title,
             'body' => $this->body,
+            'replies' => ShowReplyResource::collection($this->replies),
         ];
     }
 }

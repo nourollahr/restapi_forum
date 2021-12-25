@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\User\RegisterController;
 use App\Http\Controllers\api\User\LoginController;
 use App\Http\Controllers\api\ThreadController;
+use App\Http\Controllers\api\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::group(['namespace' => 'api'], function () {
 
     Route::group(['prefix' => 'threads'], function(){
         Route::get('/', [ThreadController::class, 'index']);
-        Route::post('/', [ThreadController::class, 'show']);
+        Route::get('/{thread}', [ThreadController::class, 'show']);
     });
 });
 
@@ -35,6 +36,12 @@ Route::group(['namespace' => 'api'], function () {
 Route::group(['namespace' => 'api', 'middleware' => 'auth:api'], function () {
    Route::group(['prefix' => 'threads'], function () {
        Route::post('create', [ThreadController::class, 'create']);
-       Route::post('remove', [ThreadController::class, 'destroy']);
+       Route::get('{thread}/remove', [ThreadController::class, 'destroy']);
+       Route::post('{thread}/add_reply', [ReplyController::class, 'store']);
+   });
+
+   Route::group(['prefix' => 'replies'], function () {
+       Route::get('{reply}/remove', [ReplyController::class, 'destroy']);
+       Route::post('{reply}/update', [ReplyController::class, 'update']);
    });
 });
